@@ -13,12 +13,7 @@ class BookAnalyzer:
         return self.text
 
     def count_words(self):
-        word_count = 0
-        text = self.text
-        words = text.split()
-        word_count = len(words)
-        print (f"\n{word_count} words were found in the document")
-        return word_count
+        return len(self.text.split())
     
     def count_characters(self):
         for character in self.text.lower():
@@ -28,21 +23,21 @@ class BookAnalyzer:
                 self.character_dict[character] += 1
         return self.character_dict
     
+    def count_words(self, text):
+        return len(text.split())
+    
     def alphabet_only(self):
         alpha_dict = {}
         for char in self.character_dict:
             if char.isalpha():
                 alpha_dict[char] = self.character_dict[char]
         for key in sorted(alpha_dict, key=lambda x: alpha_dict[x], reverse=True):
-            if alpha_dict[key] == 1:
-                print(f"{key}: {alpha_dict[key]}")
-            else:
-                print(f"{key}: {alpha_dict[key]}")
+            print(f"{key}: {alpha_dict[key]}")     
 
 def main():
     if len(sys.argv) != 2:
         print("Usage: python3 main.py <path_to_book>")
-        print("\nTry 'books/[book_name].txt' for example")
+        print("\nTry using 'books/<book_name>.txt' next time")
         sys.exit(1)
 
     book_analyzer = BookAnalyzer(sys.argv[1])
